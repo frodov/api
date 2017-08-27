@@ -32,7 +32,7 @@ Now you have all dependencies installed, your project is ready to run.
     - First the path to the project http://localhost/your-project-path/
     - Second the keyword 'service'
     - Third the mode you going to use.
-        - Modes: add, delete, filter
+        - Modes: add, delete, filter, edit.
         - Example url with mode: http://localhost/your-project-path/service/filter/
 
 ## Modes:
@@ -59,9 +59,14 @@ Now you have all dependencies installed, your project is ready to run.
 #### Add:
   - You MUST complete all the keyword (without the id).
     - Example: http://localhost/api/service/add/color:yellow/model:3/mark:susuki/price:100000/year:2018/milage:2500/type:2
+
 #### Delete:
    - You MUST set the identifier you want to delete.
     - Example: http://localhost/api/service/delete/id:10
+
+#### Filter:
+   - You MUST set the identifier and the keywords that you want to edit.
+    - Example: http://localhost/api/service/edit/id:15/color:green/mark:yamaha
 
 ##### Response codes
 
