@@ -1,0 +1,20 @@
+{
+    "name": "freddy/test",
+    "description": "testing api",
+    "keywords": ["api"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "freddy",
+            "email": "freddyvielma@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app"
+        }
+    }
+}
