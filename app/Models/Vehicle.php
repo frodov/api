@@ -70,7 +70,6 @@ class Vehicle extends Base {
      */
     protected $type_id;
 
-
     /**
      * Framework function
      */
@@ -78,8 +77,6 @@ class Vehicle extends Base {
     {
         return 'vehicles';
     }
-
-
 
     /*****************************/
     /* GETTERS AND SETTERS       */

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Log;
 use App\Web\Service\Vehicle\Handler;
 
 /**
@@ -23,15 +24,23 @@ class VehicleController extends ApiController {
      */
     public function processAction()
     {
-        try {
-            $response = Handler::process($this->dispatcher->getParams());
+        $log = new Log();
+        $request = $this->dispatcher->getParams();
+        $log->setRequest($request);
 
+        try {
+            $response = Handler::process($request);
             $this->setMessage('Success');
+            $log->setResponse($response);
         } catch (\Exception $e) {
-            $this->setCode(9000);
+            $this->setCode(310);
             $this->setError($e->getMessage());
+            $log->setResponse($e->getMessage());
         }
 
+        if( ! $log->save()) {
+            throw new \Exception('System error');
+        }
 
         return $response;
     }

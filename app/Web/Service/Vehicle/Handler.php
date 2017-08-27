@@ -3,8 +3,9 @@
 namespace App\Web\Service\Vehicle;
 
 use App\Web\Service\Add\Add;
-use App\Web\Service\Delete\Delete;
+use App\Web\Service\Edit\Edit;
 use App\Exceptions\ApiException;
+use App\Web\Service\Delete\Delete;
 use App\Web\Service\Filter\Filter;
 
 /**
@@ -36,9 +37,10 @@ class Handler
                 $add = new Add();
                 return $add->handler($params);
                 break;
-            // case 'edit':
-            //     static::edit($params);
-            //     break;
+            case 'edit':
+                $edit = new Edit();
+                return $edit->handler($params);
+                break;
             case 'delete':
                 $delete = new Delete();
                 return $delete->handler($params);

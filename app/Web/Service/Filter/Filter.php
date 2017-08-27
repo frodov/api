@@ -42,6 +42,8 @@ class Filter
         $milageSince = Match::getMilageSince();
         $milageUntil = Match::getMilageUntil();
 
+        $params = [];
+
         if ($id !== null) {
             $params['id'] = $id;
             $conditions .= 'id = :id:';
@@ -95,6 +97,7 @@ class Filter
             [
                 'conditions' => $conditions,
                 'bind' => $params,
+                'order' => 'created DESC'
             ]
         );
 
