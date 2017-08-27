@@ -41,7 +41,7 @@ Now you have all dependencies installed, your project is ready to run.
 
   - You don't need a specific order for the construction of the different parameters
   - You MUST write the keyword and the variable separate by colon (:)
-    - Possible keywords: id, color, milage, price, year, mark, model.
+    - Possible keywords: id, type, color, milage, price, year, mark, model.
         - id: represents the identifier for the vehicle `int`
         - type: represent the type of vehicle `int`
             - example: car, motorcycle, etc.
