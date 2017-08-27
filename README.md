@@ -52,7 +52,9 @@ Now you have all dependencies installed, your project is ready to run.
             - example: `2017`
         - mark: the mark of the vehicle `string`
         - model: the model of the vehicle `string`
-    - Example of url with multiple variables: http://localhost/api/service/filter/color:red/mark:cherry/price:10000/model:qq/year:2011/
+    - Example of url without variables:
+    http://localhost/api/service/filter/
+    - Example of url with multiple variables: http://localhost/api/service/filter/color:red/mark:cherry/price:10000/model:qq/year:2010/
     - Please notice that if you want to filter keywords by values between a range, you MUST separate the variables that determine such range, with colon (:). The only keywords that accept that filter are: price, year and milage.
       - Example: http://localhost/api/service/filter/year:2007:2017/price:0:100000/milage:2:100000/
 
