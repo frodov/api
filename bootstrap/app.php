@@ -6,14 +6,12 @@ use Exception;
 
 use Phalcon\Di;
 use Phalcon\Loader;
-use Phalcon\Http\Response;
-use Phalcon\Mvc\Application as PhalconApplication;
-use Phalcon\Mvc\Dispatcher;
-// use Phalcon\Mvc\Router;
 use Phalcon\Mvc\View;
+use Phalcon\Http\Response;
+use Phalcon\Mvc\Dispatcher;
 use Phalcon\Events\Manager;
-
 use App\Exception\ApiException;
+use Phalcon\Mvc\Application as PhalconApplication;
 
 class Application extends PhalconApplication {
     public function __construct()
@@ -23,20 +21,25 @@ class Application extends PhalconApplication {
         $this->config();
     }
 
-
     public function run()
     {
         try {
             echo $this->handle()->getContent();
+        } catch (\PDOException $e) {
+
+            throw new \Exception('Database error, Description: ' . $e->getMessage());
+        } catch (\Phalcon\Di\Exception $e) {
+
+            throw new \Exception('Uri error, Description: ' . $e->getMessage());
         } catch (\Exception $e) {
-            throw new Exception('System Error');
+
+            throw new \Exception('System error, Description: '. $e->getMessage());
         }
     }
 
     private function services()
     {
         $di = new Di();
-
 
         // Store the api messages
         $di->set('messages', function($input = null) {
@@ -45,7 +48,6 @@ class Application extends PhalconApplication {
 
         $di->set('view', function () {
             $view = new View();
-            // $view->setViewsDir('../apps/views/');
 
             return $view;
         });
@@ -54,11 +56,6 @@ class Application extends PhalconApplication {
             $eventsManager = new Manager();
 
             $eventsManager->attach('dispatch:afterExecuteRoute', function($event, $dispatcher) use ($di) {
-                // dd($event->getSource()->getActiveController()->getMessages());
-                // dd(get_class_methods($event->getSource()->getActiveController()));
-                // dd(get_class_methods($event->getSource()));
-                // dd($event->getData());
-                // dd($event->getSource());
 
                 $source = $event->getSource();
                 $returned = $source->getReturnedValue();
@@ -120,7 +117,6 @@ class Application extends PhalconApplication {
             return $dispatcher;
         });
 
-        ///////!!!!!!!!!!!!!!!!
         $di->set('modelsMetadata', function(){
             return new \Phalcon\Mvc\Model\Metadata\Memory();
         });
@@ -132,17 +128,7 @@ class Application extends PhalconApplication {
         $this->setDi($di);
     }
 
-    private function autoloader()
-    {
-        // $loader = new Loader();
-
-        // $loader->registerNamespaces(array(
-        //     'App\\Controllers' => '../app/Controllers/',
-        //     'App\\Models' => '../app/Models/'
-        // ));
-
-        // $loader->register();
-    }
+    private function autoloader() {}
 
     private function config()
     {
