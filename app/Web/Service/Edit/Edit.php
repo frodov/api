@@ -40,7 +40,16 @@ class Edit
             throw new ApiException('Invalid request');
         }
 
-        $vehicle = Vehicle::findFirst("id = 3");
+        $params['id'] = $identifier;
+        $conditions = 'id = :id:';
+
+        $vehicle = Vehicle::findFirst(
+            [
+                'conditions' => $conditions,
+                'bind' => $params,
+                'order' => 'created DESC'
+            ]
+        );
 
         if ($type !== null) {
             $vehicle->setType($type);
