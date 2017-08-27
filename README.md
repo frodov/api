@@ -1,34 +1,36 @@
-### Phalcon API for TESTING propose
+### Phalcon API for TESTING purposes
 
 #### Installation:
 
-- First step is cloning the project:
-    https://github.com/
+- First step: Cloning the project:
+    https://github.com/frodov/api.git
 
-- Second step is downloading and installing phalcon.dll
-  - For windows:
+- Second step: Downloading and installing phalcon.dll
+  - For Windows:
        - DLL: https://phalconphp.com/en/download/windows
        - Wampp and Phalcon: https://docs.phalconphp.com/en/3.2/webserver-wamp
   - For Linux: https://phalconphp.com/en/download/linux
 
-- Third step installing composer (if you already have composer skip this step)
+- Third step: Installing Composer (if you already have Composer skip this step)
     - https://getcomposer.org/download/
 
 - Fourth step:
     `composer install` into the project already downloaded
 
-Now you have all the dependency and your project is ready to run.
+Now you have all dependencies installed, your project is ready to run.
 
 ## DataBase configuration:
 - Creating database:
+    - https://github.com/frodov/api/blob/master/structure.sql
 
 - Adding example data:
+    - https://github.com/frodov/api/blob/master/data.sql
 
 ## How To Consume:
 
 - URL composition:
     - First the path to the project http://localhost/your-project-path/
-    - Second the key word 'service'
+    - Second the keyword 'service'
     - Third the mode you going to use.
         - Modes: add, delete, filter
         - Example url with mode: http://localhost/your-project-path/service/filter/
@@ -37,11 +39,11 @@ Now you have all the dependency and your project is ready to run.
 
 #### Filter:
 
-  - You don't need an specific order for the construction of the differents parameters
-  - You MUST set the name of the key word separate with colon (:) and the variable you want to work.
-    - Posible key words: id, color, milage, price, year, mark, model.
-        - id: represent the idenfier for the vehicule `ínt`
-        - type: represent the type of vehicle `ínt`
+  - You don't need a specific order for the construction of the different parameters
+  - You MUST write the keyword and the variable separate by colon (:)
+    - Possible keywords: id, color, milage, price, year, mark, model.
+        - id: represents the identifier for the vehicle `int`
+        - type: represent the type of vehicle `int`
             - example: car, motorcycle, etc.
         - color: the color of the vehicle `string`
         - milage: the milage of the vehicle `int`
@@ -50,16 +52,16 @@ Now you have all the dependency and your project is ready to run.
             - example: `2017`
         - mark: the mark of the vehicle `string`
         - model: the model of the vehicle `string`
-    - Example url with multiple variables: http://localhost/techo/service/filter/color:red/mark:cherry/price:10000/model:qq/year:2011/
-    - Please notice, if you want to make a filter with between options you MUST separate the range with colon, you only can add between filter to: price, year and milage.
-      - example: http://localhost/techo/service/filter/year:2007:2017/price:0:100000/milage:2:100000/
+    - Example of url with multiple variables: http://localhost/api/service/filter/color:red/mark:cherry/price:10000/model:qq/year:2011/
+    - Please notice that if you want to filter keywords by values between a range, you MUST separate the variables that determine such range, with colon (:). The only keywords that accept that filter are: price, year and milage.
+      - Example: http://localhost/api/service/filter/year:2007:2017/price:0:100000/milage:2:100000/
 
 #### Add:
-  - You MUST complete all the key word (without the id).
-    - Example: http://localhost/techo/service/add/color:yellow/model:3/mark:susuki/price:100000/year:2018/milage:2500/type:2
+  - You MUST complete all the keyword (without the id).
+    - Example: http://localhost/api/service/add/color:yellow/model:3/mark:susuki/price:100000/year:2018/milage:2500/type:2
 #### Delete:
    - You MUST set the identifier you want to delete.
-    - Example: http://localhost/techo/service/delete/id:10
+    - Example: http://localhost/api/service/delete/id:10
 
 ##### Response codes
 
@@ -91,7 +93,7 @@ Now you have all the dependency and your project is ready to run.
 - status: is the connection.
 - status_code:
     - 200 for a success.
-    - 9000 for an error.
+    - 310 for an error.
 - error: short description.
 - messages: short description.
 - data: the response data.
